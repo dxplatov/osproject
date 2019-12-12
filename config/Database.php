@@ -1,9 +1,9 @@
 <?php
 class Database{
-    private $host = 'ec2-54-243-208-234.compute-1.amazonaws.com';
-    private $db_name = 'd1o427hid21kl9';
-    private $user = 'ireurrtyhghnwl';
-    private $password = 'f51bbf6a7902e3c12f2b04fc01e060b427d3c5d8d3419d8e71291100a4a4c245';
+    private $host = 'ec2-107-21-93-51.compute-1.amazonaws.com';
+    private $db_name = 'd11i774lo4gk7c';
+    private $user = 'jupvoqbdrwfiaf';
+    private $password = 'fe916be09259358782ba360dc71eb0ef4e04fa302d7e5c2cd65389cf5d2f538a';
     private $conn;
     public function connect(){
         $this->conn = null;

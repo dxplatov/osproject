@@ -47,7 +47,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1576162580083</updated>
-      <workItem from="1576162584361" duration="737000" />
+      <workItem from="1576162584361" duration="882000" />
     </task>
     <servers />
   </component>
@@ -55,6 +55,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="481" y="341" width="478" height="245" key="ComposerInitDialogKey" timestamp="1576163498640">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="481" y="341" width="478" height="245" key="ComposerInitDialogKey/0.0.1440.900@0.0.1440.900" timestamp="1576163498640" />
     <state x="229" y="89" key="SettingsEditor" timestamp="1576162629012">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
