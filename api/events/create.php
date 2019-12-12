@@ -26,27 +26,32 @@
   $client_name = $_GET['client_name'];
   $email = $_GET['email'];
   //$message = $_GET['message'];
-  $no_of_people = $_GET['no_of_people'];
+  $no_of_people =intval($_GET['no_of_people']);
   $phone = $_GET['phone'];
   $date = $_GET['date'];
   $band_1 = $_GET['band'];
   $food_1=$_GET['food'];
+ 
   $food = array();
   $band = array();
   $band_1 = explode(',',$band_1);
+ 
   $food_1 = explode(',',$food_1);
+ 
     for($i=0;$i<count($food_1);$i++){
-        $food[$i] = intval($food[$i]);
+        $food[$i] = intval($food_1[$i]);
     }
     for($i=0;$i<count($band_1);$i++){
         $band[$i] = intval($food_1[$i]);
+        
     }
+    
     //Event data Assigning
     $event->client_name = $client_name;
     $event->email = $email;
-    //$event->message = $message;
     $event->phone = $phone;
     $event->date = $date;
+    $event->no_of_people = $no_of_people;
     if(isset($_GET['message'])) $event->message = $_GET['message'];
     $food_item->food_array = $food;
     $band_item->band_array = $band;
