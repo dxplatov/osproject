@@ -14,7 +14,6 @@
         "no_of_people"=>"empty"
     );
     
-    echo json_encode($message);
     $messages = array();
     
         array_push($messages,$message);
