@@ -91,12 +91,12 @@
 		}
 ///////////////////////////////////////////////////////////////////////
 
-		echo "<pre>";
+		
 		$json= json_encode($errors);
 		$last="[".$json."]";
 		echo $last;
-		// print_r($errors);
+		
 
-		echo "</pre>"
+		
 		
 ?>
