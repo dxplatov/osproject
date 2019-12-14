@@ -17,7 +17,7 @@
         }
         public function read(){
              // Create query
-        $query = 'SELECT * FROM ' . $this->table." ORDER BY id ASC";
+        $query = 'SELECT * FROM ' . $this->table;
         // Prepare statement
         $stmt = $this->conn->prepare($query);
         // Execute query
@@ -69,13 +69,15 @@
 
         public function approve($id){
             $query = "UPDATE event SET  status='A' WHERE id=:id RETURNING date";
-            $query_date = "INSERT INTO approved_date(date) VALUES (:date)";
+            $query_date = "INSERT INTO approved_date(date,event_id) VALUES (:date,:id)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id',$id);
             if($stmt->execute()){
                 $date = $stmt->fetch(PDO::FETCH_ASSOC)['date'];
                 $stmt_1 = $this->conn->prepare($query_date);
                 $stmt_1->bindParam(':date', $date);
+                $stmt_1->bindParam(':id', $id);
+
                if($stmt_1->execute()){
                 return 1;
                }else{
