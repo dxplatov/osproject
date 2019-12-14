@@ -27,6 +27,7 @@
     }else{
       $error = "Date is Booked";
       echo error_adder($error);
+      
     }
     }else{
       $error = "Event does not exist";

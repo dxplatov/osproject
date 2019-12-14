@@ -17,7 +17,7 @@
         }
         public function read(){
              // Create query
-        $query = 'SELECT * FROM ' . $this->table.' ORDER BY id ASC';
+        $query = 'SELECT * FROM ' . $this->table;
         // Prepare statement
         $stmt = $this->conn->prepare($query);
         // Execute query
@@ -26,9 +26,7 @@
         }
 
         public function create(){
-              // Create Query
-        // $query = 'INSERT INTO '. $this->table . ' VALUES('$this->client_name','$this->email','$this->phone','$this->date','$this->no_of_people','$this->status');';
-        // print($query);
+              
         $query = "INSERT INTO ".$this->table." (client_name,email,phone,date,no_of_people,status,message)"." VALUES (:client_name, :email, :phone, :date, :no_of_people, :status,:message) RETURNING id";
 
         // Prepare Statement
@@ -55,38 +53,37 @@
 
         public function check_date($id){
             
-            $query = "SELECT * FROM event WHERE id = :id";
-            $query_date = "SELECT * from approved_date WHERE date=:date"; 
-           
+            $query = "SELECT * FROM event WHERE id = :id AND date IN (SELECT date FROM approved_date)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $id);
-            if($stmt->execute()){
-                $event = $stmt->fetch(PDO::FETCH_ASSOC);
-                $date = $event['date'];
-                print_r($event);
-                $stmt_date = $this->conn->prepare($query_date);
-                $stmt_date->bindParam(':date', $date);
-                if($stmt_date->execute()){
-                    $approved_dates = $stmt_date->fetch(PDO::FETCH_ASSOC);
-                    print_r($approved_dates);
-                   // print(gettype($approved_dates));
-                    if($approved_dates){
-                        return 0;
-                    }else{
-                       1;
-                    }
-                }             
-            }
+           if($stmt->execute()){
+               $num = $stmt->rowCount();
+               
+                if($num>0){
+                    return 0;
+                }else{
+                    return 1;
+                }
+           }
         }
 
         public function approve($id){
-            $query = "UPDATE event SET  status='A' WHERE id=:id";
+            $query = "UPDATE event SET  status='A' WHERE id=:id RETURNING date";
+            $query_date = "INSERT INTO approved_date(date) VALUES (:date)";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam('id',$id);
+            $stmt->bindParam(':id',$id);
             if($stmt->execute()){
-                return true;
+                $date = $stmt->fetch(PDO::FETCH_ASSOC)['date'];
+                $stmt_1 = $this->conn->prepare($query_date);
+                $stmt_1->bindParam(':date', $date);
+               if($stmt_1->execute()){
+                return 1;
+               }else{
+                   return 0;
+               }
+                
             }else{
-                return false;
+                return 0;
             }
         }
 
@@ -95,9 +92,8 @@
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $id);
             if($stmt->execute()){
-                $event = $stmt->fetch(PDO::FETCH_ASSOC);
-              
-                if($event){
+                $num = $stmt->rowCount();
+                if($num>0){
                     return 1;
                 }else{
                     return 0;
