@@ -14,7 +14,7 @@
   $event = new Event($db);
   $id = $_GET['id'];
   if(!$event->check_date($id)){
-    echo  'date is booked';
+    echo json_encode('date is booked');
   }else{
-    echo 'date is free';
+    echo json_encode('date is free');
   }

@@ -61,13 +61,13 @@
             $stmt->bindParam(':id', $id);
             if($stmt->execute()){
                 $event = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo $event;
+                echo json_encode($event);
                 $date = $event['date'];
                 $stmt_date = $this->conn->prepare($query_date);
                 $stmt_date->bindParam(':date', $date);
                 if($stmt_date->execute()){
                     $approved_dates = $stmt_date->fetch(PDO::FETCH_ASSOC);
-                    echo $approved_dates;
+                    echo json_encode($approved_dates);
                     if($approved_dates>0){
                         return false;
                     }else{
