@@ -21,7 +21,7 @@ $database = new Database();
       extract($row);
       $band_item = array(
             'id' => $id,
-            'food_name' => $band_name,
+            'band_name' => $band_name,
             'price' => $price,
             
       );

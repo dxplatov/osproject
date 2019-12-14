@@ -20,7 +20,7 @@
     if($stmt1->execute()){
         $sum = $sum+$stmt1->fetch(PDO::FETCH_ASSOC)['price'];
         $sum_total = array(
-            "total_sum"=>(string)$sum
+            "total_sum"=>"$".(string)$sum
         );
         echo "[".json_encode($sum_total)."]";
     }else{
