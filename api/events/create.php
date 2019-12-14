@@ -35,7 +35,6 @@
  
   $food = array();
   
-  $band_1 = explode(',',$band_1);
  
   $food_1 = explode(',',$food_1);
  
@@ -52,7 +51,7 @@
     $event->no_of_people = $no_of_people;
     if(isset($_GET['message'])) $event->message = $_GET['message'];
     $food_item->food_array = $food;
-    $band_item->band = $band;
+    $band_item->band_id = $band;
 
 if($id=$event->create()) {
      echo json_encode(
