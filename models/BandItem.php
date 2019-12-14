@@ -30,7 +30,7 @@ class BandItem
     public function create()
     {
         
-        $query = "INSERT INTO " . $this->table . " (event_id,band_id)" . " VALUES (:event_id,:band_id)";
+        $query = "INSERT INTO " . $this->table . " (event_id,band_id) VALUES (:event_id,:band_id)";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':event_id', $this->event_id);

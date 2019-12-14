@@ -31,6 +31,7 @@
   $date = $_GET['date'];
   $band = $_GET['band'];
   $food_1=$_GET['food'];
+  print($band);
  
   $food = array();
   
