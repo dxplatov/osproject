@@ -52,7 +52,7 @@
     if(isset($_GET['message'])) $event->message = $_GET['message'];
     $food_item->food_array = $food;
     $band_item->band_id = $band;
-    print($band_item);
+    print($band_item->band_id);
 if($id=$event->create()) {
      echo json_encode(
        array('message' => 'Client data Created')
