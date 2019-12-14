@@ -17,7 +17,7 @@
         }
         public function read(){
              // Create query
-        $query = 'SELECT * FROM ' . $this->table;
+        $query = 'SELECT * FROM ' . $this->table." order by id ASC";
         // Prepare statement
         $stmt = $this->conn->prepare($query);
         // Execute query
