@@ -9,7 +9,7 @@ class BandItem
     private $conn;
     private $table = 'band_item';
     public $event_id;
-    public $band_array;
+    public $band_id;
 
     public function __construct($db)
     {
@@ -29,16 +29,12 @@ class BandItem
 
     public function create()
     {
-        $array = "";
-        for ($i = 0; $i < count($this->band_array); $i++) {
-            $array = $array . $this->band_array[$i] . ",";
-        };
-        $array = substr_replace($array, "", -1);
-        $array = $array . "]";
-        $array = "[" . $array;
-        $query = "INSERT INTO " . $this->table . " (event_id,band_id)" . " VALUES (:event_id,UNNEST(" . "array" . $array . ")" . ")";
+        
+        $query = "INSERT INTO " . $this->table . " (event_id,band_id)" . " VALUES (:event_id,:band_id)";
+
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':event_id', $this->event_id);
+        $stmt->bindParam(':band_id',$this->band_id);
         print($query);
         // Execute query
         if ($stmt->execute()) {
