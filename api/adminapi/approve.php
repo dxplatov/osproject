@@ -14,7 +14,7 @@
   $event = new Event($db);
   $id = $_GET['id'];
   if(!$event->check_date($id)){
-      die('date is booked');
+     print( 'date is booked');
   }else{
-    die('date is free');
+    print('date is free');
   }
