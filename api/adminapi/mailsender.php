@@ -92,8 +92,13 @@ $mail->AltBody = 'This is a plain-text message body';
 //send the message, check for errors
 if (!$mail->send()) {
     echo "Mailer Error: " . $mail->ErrorInfo;
-    $event->approve();
-
+    
 } else {
     echo "Message sent!";
+    if($event->approve()){
+        echo "Approved";
+    }else{
+        echo "Error";
+    }
+
 }
