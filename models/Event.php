@@ -68,12 +68,14 @@
         }
 
         public function approve($id){
+            
             $query = "UPDATE event SET  status='A' WHERE id=:id RETURNING date";
             $query_date = "INSERT INTO approved_date(date,event_id) VALUES (:date,:id)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id',$id);
             if($stmt->execute()){
                 $date = $stmt->fetch(PDO::FETCH_ASSOC)['date'];
+                print($date);
                 $stmt_1 = $this->conn->prepare($query_date);
                 $stmt_1->bindParam(':date', $date);
                 $stmt_1->bindParam(':id', $id);

@@ -95,7 +95,7 @@ if (!$mail->send()) {
     
 } else {
     echo "Message sent!";
-    if($event->approve()){
+    if($event->approve($id)){
         echo "Approved";
     }else{
         echo "Error";
