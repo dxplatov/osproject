@@ -25,6 +25,14 @@
         return $stmt;
         }
 
+        public function read_approved(){
+            $query = "SELECT * FROM " . $this->table."WHERE status='A'";
+            $stmt = $this->conn->prepare($query);
+            // Execute query
+            $stmt->execute();
+            return $stmt;
+        }
+
         public function create(){
               
         $query = "INSERT INTO ".$this->table." (client_name,email,phone,date,no_of_people,status,message)"." VALUES (:client_name, :email, :phone, :date, :no_of_people, :status,:message) RETURNING id";
