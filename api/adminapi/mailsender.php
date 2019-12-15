@@ -64,7 +64,7 @@ $mail->setFrom('osproject2019.2020@gmail.com', 'Wedding Hall Yakkasaroy');
 //Set an alternative reply-to address
 $mail->addReplyTo('osproject2019.2020@gmail.com', 'Wedding Hall Yakkasaroy');
 //Set who the message is to be sent to
-$mail->addAddress('dxplatov@gmail.com', $result['client_name']);
+$mail->addAddress($result['email'], $result['client_name']);
 //Set the subject line
 $mail->Subject = 'PHPMailer GMail SMTP test';
 $mail->isHTML(true);                                  // Set email format to HTML
