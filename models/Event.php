@@ -26,7 +26,7 @@
         }
 
         public function read_approved(){
-            $query = "SELECT * FROM " . $this->table."WHERE status='A'";
+            $query = "SELECT * FROM " . $this->table." WHERE status='A'";
             $stmt = $this->conn->prepare($query);
             // Execute query
             $stmt->execute();
